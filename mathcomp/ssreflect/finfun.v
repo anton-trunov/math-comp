@@ -95,7 +95,7 @@ Notation "[ 'ffun' => F ]" := [ffun : _ => F]
 (* Helper for defining notation for function families. *)
 Definition fmem aT rT (pT : predType rT) (f : aT -> pT) := [fun x => mem (f x)].
 
-(* Lemmas on the correspondance between finfun_type and CiC functions. *)
+(* Lemmas on the correspondence between finfun_type and CiC functions. *)
 Section PlainTheory.
 
 Variables (aT : finType) (rT : Type).

@@ -8,7 +8,7 @@ Require Import finfun bigop.
 
 (******************************************************************************)
 (* This file defines a type for sets over a finite Type, similar to the type  *)
-(* of functions over a finite Type defined in finfun.v (indeed, based in it): *)
+(* of functions over a finite Type defined in finfun.v (indeed, based on it): *)
 (*  {set T} where T must have a finType structure                             *)
 (* We equip {set T} itself with a finType structure, hence Leibnitz and       *)
 (* extensional equalities coincide on {set T}, and we can form {set {set T}}  *)
