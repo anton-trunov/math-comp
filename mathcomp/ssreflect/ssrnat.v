@@ -1142,7 +1142,7 @@ Lemma odd_mul m n : odd (m * n) = odd m && odd n.
 Proof. by elim: m => //= m IHm; rewrite odd_add -addTb andb_addl -IHm. Qed.
 
 Lemma odd_exp m n : odd (m ^ n) = (n == 0) || odd m.
-Proof. by elim: n => // n IHn; rewrite expnS odd_mul {}IHn orbC; case odd. Qed.
+Proof. by elim: n => // n IHn; rewrite expnS odd_mul IHn orKb. Qed.
 
 (* Doubling. *)
 
