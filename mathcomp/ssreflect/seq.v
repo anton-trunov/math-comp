@@ -1207,7 +1207,7 @@ Proof. by elim: s => //= x s IHs; case: (x \in s) => //=; apply: ltnW. Qed.
 Lemma mem_undup s : undup s =i s.
 Proof.
 move=> x; elim: s => //= y s IHs.
-by case Hy: (y \in s); rewrite in_cons IHs //; case: eqP => // ->.
+by case: ifP; rewrite in_cons IHs //; case: eqP => // ->.
 Qed.
 
 Lemma undup_uniq s : uniq (undup s).
