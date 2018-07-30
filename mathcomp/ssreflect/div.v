@@ -35,7 +35,7 @@ Unset Printing Implicit Defensive.
 Definition edivn_rec d :=
   fix loop m q := if m - d is m'.+1 then loop m' q.+1 else (q, m).
 
-Definition edivn m d := if d > 0 then edivn_rec d.-1 m 0 else (0, m).
+Definition edivn m d := if d is d'.+1 then edivn_rec d' m 0 else (0, m).
 
 Variant edivn_spec m d : nat * nat -> Type :=
   EdivnSpec q r of m = q * d + r & (d > 0) ==> (r < d) : edivn_spec m d (q, r).
