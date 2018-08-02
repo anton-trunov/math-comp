@@ -149,6 +149,10 @@ Lemma rcons_tupleP t x : size (rcons t x) == n.+1.
 Proof. by rewrite size_rcons size_tuple. Qed.
 Canonical rcons_tuple t x := Tuple (rcons_tupleP t x).
 
+Lemma ncons_tupleP t (c : T) : size (ncons m c t) == m + n.
+Proof. by rewrite size_ncons size_tuple. Qed.
+Canonical ncons_tuple t c := Tuple (ncons_tupleP t c).
+
 Lemma nseq_tupleP x : @size T (nseq n x) == n.
 Proof. by rewrite size_nseq. Qed.
 Canonical nseq_tuple x := Tuple (nseq_tupleP x).
