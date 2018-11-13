@@ -194,13 +194,13 @@ Variables (T1 T2 : eqType).
 Implicit Types (A : pred T1) (b : bool) (x : T1) (z : T2).
 
 Lemma contraTeq b x y : (x != y -> ~~ b) -> b -> x = y.
-Proof. by move=> imp hyp; apply/eqP; apply: contraTT hyp. Qed.
+Proof. by move=> /contraTT imp hyp; apply/eqP/imp. Qed.
 
 Lemma contraNeq b x y : (x != y -> b) -> ~~ b -> x = y.
-Proof. by move=> imp hyp; apply/eqP; apply: contraNT hyp. Qed.
+Proof. by move=> /contraNT imp hyp; apply/eqP/imp. Qed.
 
 Lemma contraFeq b x y : (x != y -> b) -> b = false -> x = y.
-Proof. by move=> imp /negbT; apply: contraNeq. Qed.
+Proof. by move=> /contraNeq imp /negbT. Qed.
 
 Lemma contraTneq b x y : (x = y -> ~~ b) -> b -> x != y.
 Proof. by move=> imp; apply: contraTN => /eqP. Qed.
@@ -212,16 +212,16 @@ Lemma contraFneq b x y : (x = y -> b) -> b = false -> x != y.
 Proof. by move=> imp /negbT; apply: contraNneq. Qed.
 
 Lemma contra_eqN b x y : (b -> x != y) -> x = y -> ~~ b.
-Proof. by move=> imp /eqP; apply: contraL. Qed.
+Proof. by move=> /contraTN imp /eqP. Qed.
 
 Lemma contra_eqF b x y : (b -> x != y) -> x = y -> b = false.
 Proof. by move=> imp /eqP; apply: contraTF. Qed.
 
 Lemma contra_eqT b x y : (~~ b -> x != y) -> x = y -> b.
-Proof. by move=> imp /eqP; apply: contraLR. Qed.
+Proof. by move=> /contraTT hyp /eqP. Qed.
 
 Lemma contra_eq z1 z2 x1 x2 : (x1 != x2 -> z1 != z2) -> z1 = z2 -> x1 = x2.
-Proof. by move=> imp /eqP; apply: contraTeq. Qed.
+Proof. by move=> /contraTeq imp /eqP. Qed.
 
 Lemma contra_neq z1 z2 x1 x2 : (x1 = x2 -> z1 = z2) -> z1 != z2 -> x1 != x2.
 Proof. by move=> imp; apply: contraNneq => /imp->. Qed.
