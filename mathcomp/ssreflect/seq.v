@@ -2292,6 +2292,9 @@ Section MakeEqSeq.
 
 Variable T : eqType.
 
+Lemma mkseq_iota m n : mkseq (addn m) n = iota m n.
+Proof. by rewrite /mkseq -iota_addl addn0. Qed.
+
 Lemma mkseq_uniq (f : nat -> T) n : injective f -> uniq (mkseq f n).
 Proof. by move/map_inj_uniq->; apply: iota_uniq. Qed.
 
