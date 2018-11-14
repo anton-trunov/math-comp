@@ -268,6 +268,13 @@ Coercion eqmod.sort : eqType >-> predArgType.
 End MakeEqTypePred.
 Module Export EqTypePred := MakeEqTypePred Equality.
 
+(* void type *)
+Lemma emptyset_eqP : Equality.axiom (fun _ _ : Empty_set => true).
+Proof. by case. Qed.
+
+Definition emptyset_eqMixin := EqMixin emptyset_eqP.
+Canonical emptyset_eqType := Eval hnf in EqType Empty_set emptyset_eqMixin.
+
 Lemma unit_eqP : Equality.axiom (fun _ _ : unit => true).
 Proof. by do 2!case; left. Qed.
 
