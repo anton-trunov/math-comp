@@ -188,43 +188,44 @@ Proof. exact/eqP/eqP. Qed.
 
 Hint Resolve eq_refl eq_sym.
 
+
 Section Contrapositives.
 
 Variables (T1 T2 : eqType).
 Implicit Types (A : pred T1) (b : bool) (x : T1) (z : T2).
 
 Lemma contraTeq b x y : (x != y -> ~~ b) -> b -> x = y.
-Proof. by move=> /contraTT imp hyp; apply/eqP/imp. Qed.
+Proof. by move/contraTT => imp /imp /eqP. Qed.
 
 Lemma contraNeq b x y : (x != y -> b) -> ~~ b -> x = y.
-Proof. by move=> /contraNT imp hyp; apply/eqP/imp. Qed.
+Proof. by move/contraNT => imp /imp /eqP. Qed.
 
 Lemma contraFeq b x y : (x != y -> b) -> b = false -> x = y.
-Proof. by move=> /contraNeq imp /negbT. Qed.
+Proof. by move/contraFT => imp /imp /eqP. Qed.
 
 Lemma contraTneq b x y : (x = y -> ~~ b) -> b -> x != y.
-Proof. by move=> imp; apply: contraTN => /eqP. Qed.
+Proof. by move=> imp; apply: contraTN=> /eqP. Qed.
 
 Lemma contraNneq b x y : (x = y -> b) -> ~~ b -> x != y.
-Proof. by move=> imp; apply: contraNN => /eqP. Qed.
+Proof. by move=> imp; apply: contraNN=> /eqP. Qed.
 
 Lemma contraFneq b x y : (x = y -> b) -> b = false -> x != y.
-Proof. by move=> imp /negbT; apply: contraNneq. Qed.
+Proof. by move=> imp; apply: contraFN=> /eqP. Qed.
 
 Lemma contra_eqN b x y : (b -> x != y) -> x = y -> ~~ b.
-Proof. by move=> /contraTN imp /eqP. Qed.
+Proof. by move=> imp /eqP; apply: contraTN. Qed.
 
 Lemma contra_eqF b x y : (b -> x != y) -> x = y -> b = false.
 Proof. by move=> imp /eqP; apply: contraTF. Qed.
 
 Lemma contra_eqT b x y : (~~ b -> x != y) -> x = y -> b.
-Proof. by move=> /contraTT hyp /eqP. Qed.
+Proof. by move=> imp /eqP; apply: contraTT. Qed.
 
 Lemma contra_eq z1 z2 x1 x2 : (x1 != x2 -> z1 != z2) -> z1 = z2 -> x1 = x2.
-Proof. by move=> /contraTeq imp /eqP. Qed.
+Proof. by move/contraTT => imp /eqP/imp/eqP. Qed.
 
 Lemma contra_neq z1 z2 x1 x2 : (x1 = x2 -> z1 = z2) -> z1 != z2 -> x1 != x2.
-Proof. by move=> imp; apply: contraNneq => /imp->. Qed.
+Proof. by move=> imp; apply: contraNN=> /eqP/imp->. Qed.
 
 Lemma memPn A x : reflect {in A, forall y, y != x} (x \notin A).
 Proof.
