@@ -9,3 +9,4 @@ presentation.v
 quotient.v
 
 -R . mathcomp.fingroup
+-arg -w -arg -notation-overridden

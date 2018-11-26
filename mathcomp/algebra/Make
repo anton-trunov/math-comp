@@ -19,3 +19,4 @@ vector.v
 zmodp.v
 
 -R . mathcomp.algebra
+-arg -w -arg -notation-overridden

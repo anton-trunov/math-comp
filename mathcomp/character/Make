@@ -8,3 +8,4 @@ mxrepresentation.v
 vcharacter.v
 
 -R . mathcomp.character
+-arg -w -arg -notation-overridden

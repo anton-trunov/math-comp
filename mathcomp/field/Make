@@ -11,3 +11,4 @@ galois.v
 separable.v
 
 -R . mathcomp.field
+-arg -w -arg -notation-overridden

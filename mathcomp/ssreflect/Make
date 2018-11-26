@@ -22,3 +22,4 @@ ssrmatching.v
 
 -I .
 -R . mathcomp.ssreflect
+-arg -w -arg -notation-overridden

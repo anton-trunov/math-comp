@@ -90,3 +90,4 @@ ssreflect/tuple.v
 
 -I .
 -R . mathcomp
+-arg -w -arg -notation-overridden

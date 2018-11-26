@@ -20,3 +20,4 @@ primitive_action.v
 sylow.v
 
 -R . mathcomp.solvable
+-arg -w -arg -notation-overridden
