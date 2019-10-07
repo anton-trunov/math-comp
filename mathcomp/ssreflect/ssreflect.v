@@ -116,6 +116,21 @@ Ltac subst_eq :=
 Notation "'[' '<-' ']'" := (ltac:(subst_eq)) (at level 0): ssripat_scope.
 Notation "'[' '->' ']'" :=
   (ltac:(move/(@esym _ _ _); subst_eq)) (at level 0): ssripat_scope.
+Notation " '!' '<-' " :=
+  (ltac:(let x := fresh "_top_" in move=> x; rewrite -!{}x))
+  (at level 0): ssripat_scope.
+Notation " '!' '->' " :=
+  (ltac:(let x := fresh "_top_" in move=> x; rewrite !{}x))
+  (at level 0): ssripat_scope.
+Notation " '?' '<-' " :=
+  (ltac:(let x := fresh "_top_" in move=> x; rewrite -?{}x))
+  (at level 0): ssripat_scope.
+Notation " '?' '->' " :=
+  (ltac:(let x := fresh "_top_" in move=> x; rewrite ?{}x))
+  (at level 0): ssripat_scope.
+Notation " '->' '\' '<-' " :=
+  (ltac:(let x := fresh "_top_" in move=> x; progress rewrite {}x || rewrite -{}x))
+  (at level 0): ssripat_scope.
 
 Notation "'[' '1' rules ']'" :=
   (ltac:(rewrite rules)) (at level 0) : ssripat_scope.
@@ -155,6 +170,32 @@ Notation "'[' '-' '!' rules ']'" :=
   (ltac:(rewrite -!rules)) (at level 0) : ssripat_scope.
 Notation "'[' '-' '?' rules ']'" :=
   (ltac:(rewrite -?rules)) (at level 0) : ssripat_scope.
+Notation "'[' 'rw' '?' r1 ']'" :=
+  (ltac:(rewrite ?r1)) (at level 0, r1 at level 0) : ssripat_scope.
+Notation "'[' 'rw' '?' r1 r2 ']'" :=
+  (ltac:(rewrite ?r1 ?r2)) (at level 0, r1, r2 at level 0) : ssripat_scope.
+Notation "'[' 'rw' '?' r1 r2 r3 ']'" :=
+  (ltac:(rewrite ?r1 ?r2 ?r3))
+  (at level 0, r1, r2, r3 at level 0) : ssripat_scope.
+Notation "'[' 'rw' '?' r1 r2 r3 r4 ']'" :=
+  (ltac:(rewrite ?r1 ?r2 ?r3 ?r4))
+  (at level 0, r1, r2, r3, r4 at level 0) : ssripat_scope.
+Notation "'[' 'rw' '?' r1 r2 r3 r4 r5 ']'" :=
+  (ltac:(rewrite ?r1 ?r2 ?r3 ?r4 ?r5))
+  (at level 0, r1, r2, r3, r4, r5 at level 0) : ssripat_scope.
+Notation "'[' 'rw' '!' r1 ']'" :=
+  (ltac:(rewrite !r1)) (at level 0, r1 at level 0) : ssripat_scope.
+Notation "'[' 'rw' '!' r1 r2 ']'" :=
+  (ltac:(rewrite !r1 !r2)) (at level 0, r1, r2 at level 0) : ssripat_scope.
+Notation "'[' 'rw' '!' r1 r2 r3 ']'" :=
+  (ltac:(rewrite !r1 !r2 !r3))
+  (at level 0, r1, r2, r3 at level 0) : ssripat_scope.
+Notation "'[' 'rw' '!' r1 r2 r3 r4 ']'" :=
+  (ltac:(rewrite !r1 !r2 !r3 !r4))
+  (at level 0, r1, r2, r3, r4 at level 0) : ssripat_scope.
+Notation "'[' 'rw' '!' r1 r2 r3 r4 r5 ']'" :=
+  (ltac:(rewrite !r1 !r2 !r3 !r4 !r5))
+  (at level 0, r1, r2, r3, r4, r5 at level 0) : ssripat_scope.
 Notation "'[' 'rw' '/' r1 ']'" :=
   (ltac:(rewrite /r1)) (at level 0, r1 at level 0) : ssripat_scope.
 Notation "'[' 'rw' '/' r1 r2 ']'" :=
@@ -172,3 +213,7 @@ Notation "'[' 'rw' '/' r1 r2 r3 r4 r5 ']'" :=
 Notation dup := (ltac:(let x := fresh "_top_" in move=> x; move: x (x))).
 Notation swap := (ltac:(let x := fresh "_top_" in let y := fresh "_top_" in move=> x y; move: y x)).
 Notation apply := (ltac:(let f := fresh "_top_" in move=> f /f)).
+Notation "'[' 'ap' ':' f ']'" :=
+  (ltac:(apply: f)) (at level 0, f at level 0) : ssripat_scope.
+Notation "'[' 'ap' '/' f ']'" :=
+  (ltac:(apply/f)) (at level 0, f at level 0) : ssripat_scope.
