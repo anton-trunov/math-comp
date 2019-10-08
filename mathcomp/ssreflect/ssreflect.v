@@ -213,7 +213,3 @@ Notation "'[' 'rw' '/' r1 r2 r3 r4 r5 ']'" :=
 Notation dup := (ltac:(let x := fresh "_top_" in move=> x; move: x (x))).
 Notation swap := (ltac:(let x := fresh "_top_" in let y := fresh "_top_" in move=> x y; move: y x)).
 Notation apply := (ltac:(let f := fresh "_top_" in move=> f /f)).
-Notation "'[' 'ap' ':' f ']'" :=
-  (ltac:(apply: f)) (at level 0, f at level 0) : ssripat_scope.
-Notation "'[' 'ap' '/' f ']'" :=
-  (ltac:(apply/f)) (at level 0, f at level 0) : ssripat_scope.
